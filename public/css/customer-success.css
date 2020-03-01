@@ -1,0 +1,36 @@
+body{
+    background-color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.content {
+    padding-bottom: 0;
+    padding-top: 30px;
+}
+
+.login-page {
+    background-color: transparent;
+}
+
+.login-box {
+    margin: 7% auto 40% auto;
+}
+
+.login-logo {
+    color: #ffffff;
+}
+
+.logout-box {
+    float: right;
+    padding-right: 15px;
+    padding-top: 5px;
+}
+
+.logout-box i {
+    color: #ffffff;
+}
+
+.logout-box i:hover {
+    color: #cccccc;
+}

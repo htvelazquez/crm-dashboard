@@ -1,0 +1,7 @@
+.fas, .fab {
+    width: 20px;
+}
+
+#spend_result tbody td {
+    text-align: right;
+}
