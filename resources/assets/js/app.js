@@ -13,11 +13,12 @@ require('./plugins/sweet-alert-plugin');
 Vue.component('datepicker', require('../../../node_modules/vuejs-datepicker/dist/vuejs-datepicker.js'));
 // Vue.component('closing-rate-upload', require('./components/ClosingRateUpload.vue'));
 // Vue.component('closing-rate-pipe-dashboard', require('./components/ClosingRatePipeDashboard.vue'));
-// Vue.component('UtilToolsDashboard', require('./components/UtilToolsDashboardComponent.vue'));
+// Vue.component('Dashboard', require('./components/DashboardComponent.vue'));
 // Vue.component('tech-stack-analyzer-dashboard', require('./components/TechStackAnalyzerDashboardComponent.vue'));
 //
 // Vue.component('leadgen-jobs-summary', require('./components/LeadgenJobsSummaryComponent.vue'));
-Vue.component('leadgen-data', require('./components/LeadgenDataComponent.vue'));
+Vue.component('directory-data', require('./components/DirectoryDataComponent.vue'));
+Vue.component('overlay', require('./components/OverlayComponent.vue'));
 
 import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';

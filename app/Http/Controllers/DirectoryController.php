@@ -112,7 +112,7 @@ class DirectoryController extends Controller
             'base_uri' => $base_uri
         ]);
 
-        $response = $client->request('POST', "/api/v1/contact-download", [
+        $response = $client->request('POST', "/api/contact-download", [
             'http_errors' => false,
             'headers' => [
               'X-API-KEY' => $apiKey

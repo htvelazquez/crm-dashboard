@@ -32,6 +32,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset("/bower_components/AdminLTE-2.4.2/dist/css/skins/skin-green-light.min.css") }}">
     <link rel="stylesheet" href="{{ asset("/bower_components/AdminLTE-2.4.2/bower_components/jquery-ui/themes/base/jquery-ui.min.css") }}">
 
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+
     <!-- link rel="stylesheet" href="{{ asset("/css/customer-success.css") }}" -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

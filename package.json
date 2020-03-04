@@ -22,10 +22,11 @@
   "dependencies": {
     "admin-lte": "^2.4.9",
     "fusioncharts": "^3.13.3",
+    "gulp-sass": "^3.1.0",
     "numeral": "^2.0.6",
     "sweetalert2": "^7.33.1",
     "vue-fusioncharts": "^2.0.4",
-    "vue-moment": "^4.0.0",
+    "vue-moment": "^4.1.0",
     "vue-multiselect": "^2.1.4",
     "vuejs-datepicker": "^1.5.4"
   }
