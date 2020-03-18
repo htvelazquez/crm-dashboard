@@ -55,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </script>
 </head>
 <body class="skin-green-light">
-    <div id="v-app" class="wrapper">
+    <div id="v-app" class="">
         @if (null !== auth()->user())
         <div class="logout-box">
             <a href="/logout" title="Exit - {{ Auth::user()->name }}"><i class="fas fa-sign-out-alt"></i></a>
