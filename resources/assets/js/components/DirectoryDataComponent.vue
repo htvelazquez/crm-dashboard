@@ -3,7 +3,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">
-                  <i class="fa fa-filter"></i> Filters
+                  <i class="fa fa-filter"></i> Filtros de búsqueda
               </h3>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -11,8 +11,14 @@
               </div>
             </div>
             <div class="box-body form-horizontal">
-                <div class="form-group col-md-6">
-                    <label for="date_start" class="col-md-4 control-label" style="text-align: left;">Start date</label>
+                <div class="form-group col-md-3">
+                    <label for="title" class="col-md-4 control-label" style="text-align: left;">Titulo</label>
+                    <div class="col-md-12">
+                        <input class="form-control" type="text" name="title" />
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="date_start" class="col-md-4 control-label" style="text-align: left;">Fecha Inicio</label>
                     <div class="col-md-12">
                         <datepicker
                             v-model="filters.start"
@@ -24,17 +30,16 @@
                         </datepicker>
                     </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="date_end" class="col-md-4 control-label" style="text-align: left;">End date</label>
+                <div class="form-group col-md-3">
+                    <label for="languages" class="col-md-4 control-label" style="text-align: left;">Idioma</label>
                     <div class="col-md-12">
-                        <datepicker
-                            v-model="filters.end"
-                            :format="customFormatter"
-                            :typeable="true"
-                            id="date_end"
-                            name="date_end"
-                            input-class="form-control">
-                        </datepicker>
+                        <input class="form-control" type="text" name="languages" />
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="location" class="col-md-4 control-label" style="text-align: left;">Ubicación</label>
+                    <div class="col-md-12">
+                        <input class="form-control" type="text" name="location" />
                     </div>
                 </div>
             </div>
@@ -64,10 +69,11 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Titulo</th>
-                                <th>Desde</th>
+                                <th width="82px">Desde</th>
                                 <th>Compañía</th>
                                 <th>Ubicación</th>
                                 <th>Idiomas</th>
+                                <th>Etiquetas</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -88,7 +94,15 @@
                                     <span v-else>{{ contact.company }}</span>
                                 </td>
                                 <td>{{ contact.location }}</td>
-                                <td></td>
+                                <td v-if="contact.languages">
+                                    <span v-for="language in contact.languages" style="margin-right:4px;">
+                                        <img v-if="language.icon" v-bind:src="language.icon" v-bind:title="language.label" v-bind:alt="language.iso2code" width="20px" />
+                                        <span v-else>{{ language.iso2code }}</span>
+                                    </span>
+                                </td><td v-else></td>
+                                <td v-if="contact.labels">
+                                    <span style="margin-right:4px;" v-for="label in contact.labels" class="label label-default" v-bind:style="'color:#FFFFFF;background-color:#'+label.color" >{{ label.name }}</span>
+                                </td><td v-else></td>
                                 <td></td>
                             </tr>
                         </tbody>

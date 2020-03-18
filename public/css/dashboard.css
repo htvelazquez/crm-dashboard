@@ -10,8 +10,8 @@
     background-color: #55CBC8 !important;
 }
 .main-header .sidebar-toggle:hover {
-    color: #3C8DBC !important;
-    background-color: #FFFFFF !important;
+    background: rgba(0,0,0,0.1) !important;
+    color: #f6f6f6 !important;
 }
 
 .skin-green-light .main-header .logo {
