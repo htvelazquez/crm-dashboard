@@ -18,6 +18,12 @@
                     </div>
                 </div>
                 <div class="form-group col-md-3">
+                    <label for="labels" class="col-md-4 control-label" style="text-align: left;">Etiquetas</label>
+                    <div class="col-md-12">
+                        <input class="form-control" type="text" name="labels" />
+                    </div>
+                </div>
+                <!--div class="form-group col-md-3">
                     <label for="date_start" class="col-md-4 control-label" style="text-align: left;">Fecha Inicio</label>
                     <div class="col-md-12">
                         <datepicker
@@ -29,7 +35,7 @@
                             input-class="form-control">
                         </datepicker>
                     </div>
-                </div>
+                </div-->
                 <div class="form-group col-md-3">
                     <label for="languages" class="col-md-4 control-label" style="text-align: left;">Idioma</label>
                     <div class="col-md-12">
@@ -44,11 +50,11 @@
                 </div>
             </div>
             <div class="box-footer clearfix">
-                <button v-on:click="getContacts(1)" class="btn btn-primary">Filter</button>
+                <button v-on:click="getContacts(1)" class="btn btn-primary">Filtrar</button>
 
                 <button v-on:click="exportContacts()" class="btn btn-warning pull-right">
                     <span class="glyphicon glyphicon-download"></span>
-                    .csv
+                    Exportar
                 </button>
             </div>
             <div class="overlay" v-if="loadingFilters">
@@ -186,7 +192,7 @@
                     app.limit = resp.data.data.limit;
                     app.currPage = resp.data.data.page;
                     app.pages = [];
-                    var lastPage = Math.round(app.total / app.limit);
+                    var lastPage = Math.ceil(app.total / app.limit);
 
                     var start = ((app.currPage - 10) > 0) ? (app.currPage - 10) : 1;
                     var end = ((app.currPage + 10) <= lastPage) ? (app.currPage + 10) : lastPage;
