@@ -45,19 +45,6 @@ class DirectoryController extends Controller
         $base_uri = getenv('DIRECTORY_URL');
         $apiKey = getenv('DIRECTORY_X-API-KEY');
 
-        $string_start = '';
-        $string_end = '';
-
-        if (!empty($request->start)) {
-            $date_start = date_create($request->start);
-            $string_start = date_format($date_start, 'Y-m-d');
-        }
-
-        if (!empty($request->end)) {
-            $date_end = date_create($request->end);
-            $string_end = date_format($date_end, 'Y-m-d');
-        }
-
         $return = null;
         $client = new Client([
             'base_uri' => $base_uri
@@ -71,10 +58,10 @@ class DirectoryController extends Controller
             'query' => [
                 'page'  => $request->page,
                 'limit' => $request->limit,
-                'company' => $request->company,
-                'relevance' => $request->relevance,
-                'start' => $string_start,
-                'end' => $string_end,
+                'title' => $request->title,
+                'tags' => (!empty($request->tags))? implode(',',$request->tags) : '',
+                'language' => $request->language,
+                'location' => $request->location
             ]
         ]);
 

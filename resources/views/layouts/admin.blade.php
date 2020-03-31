@@ -53,6 +53,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset("/bower_components/AdminLTE-2.4.2/dist/css/skins/skin-green-light.min.css") }}">
     <link rel="stylesheet" href="{{ asset("/bower_components/AdminLTE-2.4.2/bower_components/jquery-ui/themes/base/jquery-ui.min.css") }}">
 
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
+
+    <!-- Select2 -->
+    <!-- link rel="stylesheet" href="{{ asset("/bower_components/AdminLTE-2.4.2/bower_components/select2/dist/css/select2.min.css") }}" -->
+
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -97,10 +102,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 3.3.6 -->
     <script src="{{ asset ("/bower_components/AdminLTE-2.4.2/bower_components/bootstrap/dist/js/bootstrap.min.js") }}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <!-- Select2 -->
+    <!-- script src="{{ asset ("/bower_components/AdminLTE-2.4.2/bower_components/select2/dist/js/select2.full.min.js") }}"></script-->
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script -->
+
+    <!-- link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script -->
 
     <script src="{{ asset ("/bower_components/AdminLTE-2.4.2/dist/js/adminlte.min.js") }}"></script>
     @stack('scripts')
