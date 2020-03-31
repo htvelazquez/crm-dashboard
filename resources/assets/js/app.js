@@ -11,28 +11,30 @@ require('./plugins/sweet-alert-plugin');
 // Vue.component('jobs-manager-new-job', require('./components/JobsManagerNewJobFormComponent.vue'));
 // Vue.component('jobs-manager-table', require('./components/JobsManagerTableComponent.vue'));
 Vue.component('datepicker', require('../../../node_modules/vuejs-datepicker/dist/vuejs-datepicker.js'));
+
 // Vue.component('closing-rate-upload', require('./components/ClosingRateUpload.vue'));
 // Vue.component('closing-rate-pipe-dashboard', require('./components/ClosingRatePipeDashboard.vue'));
 // Vue.component('Dashboard', require('./components/DashboardComponent.vue'));
 // Vue.component('tech-stack-analyzer-dashboard', require('./components/TechStackAnalyzerDashboardComponent.vue'));
 //
 // Vue.component('leadgen-jobs-summary', require('./components/LeadgenJobsSummaryComponent.vue'));
-Vue.component('directory-data', require('./components/DirectoryDataComponent.vue'));
-Vue.component('overlay', require('./components/OverlayComponent.vue'));
 
-import VueFusionCharts from 'vue-fusioncharts';
-import FusionCharts from 'fusioncharts';
-import Charts from 'fusioncharts/fusioncharts.powercharts';
-import Charts1 from 'fusioncharts/fusioncharts.charts';
+Vue.component('directory-data', require('./components/DirectoryDataComponent.vue').default);
+Vue.component('overlay', require('./components/OverlayComponent.vue').default);
 
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-Vue.use(VueFusionCharts, FusionCharts, Charts, Charts1, FusionTheme);
+// import VueFusionCharts from 'vue-fusioncharts';
+// import FusionCharts from 'fusioncharts';
+// import Charts from 'fusioncharts/fusioncharts.powercharts';
+// import Charts1 from 'fusioncharts/fusioncharts.charts';
+//
+// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+// Vue.use(VueFusionCharts, FusionCharts, Charts, Charts1, FusionTheme);
 
 import Multiselect from 'vue-multiselect';
-Vue.component('multiselect', Multiselect);
+Vue.component('multiselect-labels', Multiselect);
 
 // Resolves charts dependancy
-Charts(FusionCharts);
+// Charts(FusionCharts);
 
 const app = new Vue({
     el: '#v-app'
