@@ -311,7 +311,7 @@
                                     </span>
                                 </td><td v-else></td>
                                 <td v-if="contact.labels">
-                                    <span style="margin-right:4px;" v-for="label in contact.labels" class="label label-default" v-bind:style="'color:#FFFFFF;background-color:#'+label.color" >{{ label.name }}</span>
+                                    <span style="margin-right:4px;" v-for="label in contact.labels" class="label label-primary"  >{{ label.name }}</span> <!-- v-bind:style="'color:#FFFFFF;background-color:#'+label.color" -->
                                 </td><td v-else></td>
                                 <td></td>
                             </tr>
@@ -365,7 +365,7 @@
                 currPage: 0,
                 firstPage: 0,
                 lastPage: 0,
-                allTags: ['Freelancer', 'Argentina', 'Empleado', 'Internacional'],
+                allTags: [],
                 pages: [],
                 filters: {
                     title: '',
@@ -389,8 +389,6 @@
                 axios.post('/directory/contacts', {
                     page: page,
                     limit: app.limit,
-                    //company: app.filters.company,
-                    //relevance: app.filters.relevance,
                     title: app.filters.title,
                     tags: app.filters.tags,
                     language: app.filters.language,
@@ -430,10 +428,10 @@
                 app.loadingFilters = true;
 
                 axios.post('/directory/export_contacts', {
-                    //company: app.filters.company,
-                    //relevance: app.filters.relevance,
-                    // start: app.filters.start,
-                    // end: app.filters.end,
+                    title: app.filters.title,
+                    tags: app.filters.tags,
+                    language: app.filters.language,
+                    location: app.filters.location
                 })
                 .then(function (resp) {
                     console.log(resp.data.data);
@@ -442,7 +440,7 @@
                     var a = document.createElement('a');
                     const url = window.URL.createObjectURL(new Blob([resp.data.data]));
                     a.href = url;
-                    a.setAttribute('download', 'directory-' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '_' + d.getTime() + '.csv');
+                    a.setAttribute('download', 'cirenio_export-' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '_' + d.getTime() + '.csv');
                     a.click();
                     app.loading = false;
                     app.loadingFilters = false;
@@ -453,6 +451,20 @@
                     app.loadingFilters = false;
                 });
             },
+            getLabels(){
+                var app = this;
+
+                axios.get('/directory/labels')
+                    .then(function (resp) {
+                        console.log(resp);
+                        if (resp.status == 200){
+                            app.allTags = resp.data;
+                        }
+                    }).catch(function (resp) {
+                        alert('Falla al intentar cargar las etiquetas');
+                        console.log(resp);
+                });
+            },
             // customFormatter(date) {
             //     return moment(date).format('YYYY-MM-DD');
             // }
@@ -460,6 +472,7 @@
         mounted() {
             var app = this;
             //app.filters.start = new Date;
+            this.getLabels(1);
             this.getContacts(1);
         }
     }

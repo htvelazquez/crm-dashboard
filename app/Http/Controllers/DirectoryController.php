@@ -81,34 +81,21 @@ class DirectoryController extends Controller
         $base_uri = getenv('DIRECTORY_URL');
         $apiKey = getenv('DIRECTORY_X-API-KEY');
 
-        $string_start = '';
-        $string_end = '';
-
-        if (!empty($request->start)) {
-            $date_start = date_create($request->start);
-            $string_start = date_format($date_start, 'Y-m-d');
-        }
-
-        if (!empty($request->end)) {
-            $date_end = date_create($request->end);
-            $string_end = date_format($date_end, 'Y-m-d');
-        }
-
         $return = null;
         $client = new Client([
             'base_uri' => $base_uri
         ]);
 
-        $response = $client->request('POST', "/api/contact-download", [
+        $response = $client->request('GET', "/api/contacts-download", [
             'http_errors' => false,
             'headers' => [
               'X-API-KEY' => $apiKey
             ],
-            'json' => [
-                //'company' => $request->company,
-                //'relevance' => $request->relevance,
-                'start' => $string_start,
-                'end' => $string_end,
+            'query' => [
+                'title' => $request->title,
+                'tags' => (!empty($request->tags))? implode(',',$request->tags) : '',
+                'language' => $request->language,
+                'location' => $request->location
             ]
         ]);
 
@@ -119,6 +106,36 @@ class DirectoryController extends Controller
         }
 
         $return['status'] = $response->getStatusCode();
+
+        return $return;
+    }
+
+    public function getLabels(Request $request)
+    {
+        $base_uri = getenv('DIRECTORY_URL');
+        $apiKey = getenv('DIRECTORY_X-API-KEY');
+
+        $client = new Client([
+            'base_uri' => $base_uri
+        ]);
+
+        $response = $client->request('GET', "/api/labels", [
+            'http_errors' => false,
+            'headers' => [
+              'X-API-KEY' => $apiKey
+            ],
+            'query' => [
+              'term'  => $request->term
+            ]
+        ]);
+
+        $return = [];
+
+        if ($response->getStatusCode() == 200) {
+            $labels = json_decode((string)$response->getBody());
+            if (!empty($labels->suggestions))
+                $return = $labels->suggestions;
+        }
 
         return $return;
     }
