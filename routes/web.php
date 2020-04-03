@@ -24,3 +24,4 @@ Route::get('/', 'DirectoryController@index')->middleware('check.permissions');
 Route::get('/directory/status', 'DirectoryController@status');
 Route::post('/directory/contacts', 'DirectoryController@contacts');
 Route::post('/directory/export_contacts', 'DirectoryController@CSVcontacts');
+Route::get('/directory/labels', 'DirectoryController@getLabels')->middleware('verify.login');

@@ -2227,7 +2227,7 @@ __webpack_require__.r(__webpack_exports__);
       currPage: 0,
       firstPage: 0,
       lastPage: 0,
-      allTags: ['Freelancer', 'Argentina', 'Empleado', 'Internacional'],
+      allTags: [],
       pages: [],
       filters: {
         title: '',
@@ -2252,8 +2252,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/directory/contacts', {
         page: page,
         limit: app.limit,
-        //company: app.filters.company,
-        //relevance: app.filters.relevance,
         title: app.filters.title,
         tags: app.filters.tags,
         language: app.filters.language,
@@ -2285,17 +2283,18 @@ __webpack_require__.r(__webpack_exports__);
       var app = this;
       app.loading = true;
       app.loadingFilters = true;
-      axios.post('/directory/export_contacts', {//company: app.filters.company,
-        //relevance: app.filters.relevance,
-        // start: app.filters.start,
-        // end: app.filters.end,
+      axios.post('/directory/export_contacts', {
+        title: app.filters.title,
+        tags: app.filters.tags,
+        language: app.filters.language,
+        location: app.filters.location
       }).then(function (resp) {
         console.log(resp.data.data);
         var d = new Date();
         var a = document.createElement('a');
         var url = window.URL.createObjectURL(new Blob([resp.data.data]));
         a.href = url;
-        a.setAttribute('download', 'directory-' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '_' + d.getTime() + '.csv');
+        a.setAttribute('download', 'cirenio_export-' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '_' + d.getTime() + '.csv');
         a.click();
         app.loading = false;
         app.loadingFilters = false;
@@ -2303,6 +2302,19 @@ __webpack_require__.r(__webpack_exports__);
         console.log(resp);
         app.loading = false;
         app.loadingFilters = false;
+      });
+    },
+    getLabels: function getLabels() {
+      var app = this;
+      axios.get('/directory/labels').then(function (resp) {
+        console.log(resp);
+
+        if (resp.status == 200) {
+          app.allTags = resp.data;
+        }
+      })["catch"](function (resp) {
+        alert('Falla al intentar cargar las etiquetas');
+        console.log(resp);
       });
     } // customFormatter(date) {
     //     return moment(date).format('YYYY-MM-DD');
@@ -2312,6 +2324,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var app = this; //app.filters.start = new Date;
 
+    this.getLabels(1);
     this.getContacts(1);
   }
 }); // $(document).ready(function() {
@@ -55025,11 +55038,8 @@ var render = function() {
                               return _c(
                                 "span",
                                 {
-                                  staticClass: "label label-default",
-                                  staticStyle: { "margin-right": "4px" },
-                                  style:
-                                    "color:#FFFFFF;background-color:#" +
-                                    label.color
+                                  staticClass: "label label-primary",
+                                  staticStyle: { "margin-right": "4px" }
                                 },
                                 [_vm._v(_vm._s(label.name))]
                               )

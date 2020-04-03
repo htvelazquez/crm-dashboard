@@ -153,3 +153,11 @@
 .multiselect__select {
     height: 32px;
 }
+
+.multiselect__tag, .multiselect__tag:hover, .multiselect__tag-icon:focus, .multiselect__tag-icon:hover, .multiselect__option--highlight, .multiselect__option--highlight:after {
+    background-color: #3C8DBC !important;
+}
+
+.multiselect__tag-icon:after {
+    color: #FFFFFF;
+}
