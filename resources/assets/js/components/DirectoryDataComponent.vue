@@ -307,7 +307,7 @@
                                 <td v-if="contact.languages">
                                     <span v-for="language in contact.languages" style="margin-right:4px;">
                                         <img v-if="language.icon" v-bind:src="language.icon" v-bind:title="language.label" v-bind:alt="language.iso2code" width="20px" />
-                                        <span v-else>{{ language.iso2code }}</span>
+                                        <span class="label label-default" v-else style="cursor:default;padding:.1em .6em .2em" v-bind:title="language.label">{{ language.iso2code }}</span>
                                     </span>
                                 </td><td v-else></td>
                                 <td v-if="contact.labels">
