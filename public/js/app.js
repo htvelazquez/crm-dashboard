@@ -55021,9 +55021,18 @@ var render = function() {
                                           width: "20px"
                                         }
                                       })
-                                    : _c("span", [
-                                        _vm._v(_vm._s(language.iso2code))
-                                      ])
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass: "label label-default",
+                                          staticStyle: {
+                                            cursor: "default",
+                                            padding: ".1em .6em .2em"
+                                          },
+                                          attrs: { title: language.label }
+                                        },
+                                        [_vm._v(_vm._s(language.iso2code))]
+                                      )
                                 ]
                               )
                             }),
